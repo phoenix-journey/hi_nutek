@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Build using Cloud Build
+name: Pushed to artifacts library
 
 on:
   push:
