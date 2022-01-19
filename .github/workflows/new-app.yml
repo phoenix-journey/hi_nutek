@@ -17,7 +17,8 @@ name: Pushed to artifacts library
 on:
   push:
     branches:
-    - main
+    #- main
+    - test-build-logs
 
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
@@ -26,7 +27,7 @@ env:
 jobs:
   setup-build-deploy:
     name: Setup, Build, and Deploy 🚀
-    runs-on: github-runner
+    runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
     permissions:
