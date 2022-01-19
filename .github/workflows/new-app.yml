@@ -53,4 +53,5 @@ jobs:
       run: |-
         gcloud builds submit \
           --quiet \
+          --gcs-log-dir=gs://phoenix-journey/build-logs \
           --tag "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:$GITHUB_SHA"
