@@ -26,7 +26,7 @@ env:
 jobs:
   setup-build-deploy:
     name: Setup, Build, and Deploy 🚀
-    runs-on: github-runner
+    runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
     permissions:
