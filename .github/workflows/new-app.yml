@@ -16,9 +16,9 @@ name: Pushed to artifacts library
 
 on:
   push:
+  pull_request:
     branches:
-    #- main
-    - test-build-logs
+    - main
 
 env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
@@ -27,7 +27,7 @@ env:
 jobs:
   setup-build-deploy:
     name: Setup, Build, and Deploy 🚀
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Add "id-token" with the intended permissions.
     permissions:
@@ -53,4 +53,5 @@ jobs:
       run: |-
         gcloud builds submit \
           --quiet \
+          --gcs-log-dir=gs://phoenix-journey/build-logs \
           --tag "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:$GITHUB_SHA"
