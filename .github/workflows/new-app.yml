@@ -16,6 +16,8 @@ name: Pushed to artifacts library
 
 on:
   push:
+    branches:
+    - main
   pull_request:
     branches:
     - main
