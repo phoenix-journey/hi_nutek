@@ -72,4 +72,5 @@ jobs:
       with:
         add: "app_versions"
         author_name: "Phoenix Journey bot"
+        message: "Commit from GitHub Actions [skip ci]"
         author_email: "github-bot@phoenixjourney.com"
