@@ -57,3 +57,14 @@ jobs:
           --quiet \
           --gcs-log-dir=gs://phoenix-journey/build-logs \
           --tag "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:$GITHUB_SHA"
+
+    # save latest version to github
+    - name: Commit new version
+      uses: EndBug/add-and-commit@v8
+      run: |-
+        echo "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:$GITHUB_SHA" >> \
+          app_versions
+        with:
+          add: "app_versions"
+          author_name: Phoenix Journey bot
+          author_email: github-bot@phoenixjourney.com
