@@ -29,7 +29,7 @@ env:
 jobs:
   setup-build-deploy:
     name: Setup, Build, and Deploy 🚀
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     # Add "id-token" with the intended permissions.
     permissions:
@@ -42,6 +42,12 @@ jobs:
       with:
         token: '${{ secrets.GITHUB }}'
 
+    ###
+    #
+    # In this place should be a test step # good first issue
+    #
+    ###
+
     #  Alternative option - authentication via credentials json
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
@@ -53,12 +59,20 @@ jobs:
       uses: google-github-actions/setup-gcloud@v0
 
     # Build and push image to Google Container Registry
-    - name: Build
+    - name: Build with GitHub SHA tag
       run: |-
         gcloud builds submit \
           --quiet \
           --gcs-log-dir=gs://phoenix-journey/build-logs \
           --tag "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:$GITHUB_SHA"
+    
+     # Build and push image to Google Container Registry
+    - name: Build with lates tag
+      run: |-
+        gcloud builds submit \
+          --quiet \
+          --gcs-log-dir=gs://phoenix-journey/build-logs \
+          --tag "us-east1-docker.pkg.dev/$PROJECT_ID/test/$GITHUB_REPOSITORY:latest"
     
     # append to app_versions
     - name: Add new version
